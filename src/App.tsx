@@ -1,10 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { HMSRoomProvider } from '@100mslive/react-sdk';
+import JoinForm from './components/join';
 
 function App() {
   return (
-    <div className="App">
+    <HMSRoomProvider>
+       {/* <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +22,10 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </div> */}
+    <JoinForm/>
+    </HMSRoomProvider>
+   
   );
 }
 
