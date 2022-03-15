@@ -1,20 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   useHMSActions,
-  useVideo,
   HMSStore,
   selectCameraStreamByPeerID,
   useHMSStore,
-  selectPeers,
 } from "@100mslive/react-sdk";
 
 const VideoCard = (props: any) => {
-  const videoRef = useRef(null);
-  const hmsActions = useHMSActions();
   const peer = props.peer;
-  console.log("####", peer.isLocal);
-  // get the camera track to render
+  const isLocal = props.isLocal;
+  const videoRef = useRef(null);
   const videoTrack = useHMSStore(selectCameraStreamByPeerID(peer.id));
+  const hmsActions = useHMSActions();
+
+  // to attach incomming video track to video frame
   useEffect(() => {
     if (videoRef.current && videoTrack) {
       if (videoTrack.enabled) {
@@ -24,32 +23,47 @@ const VideoCard = (props: any) => {
       }
     }
   }, [videoTrack, hmsActions]);
-  const backgroundColor = peer.isLocal ? "#00ff00" : "#ff0000";
+
+  console.log(peer);
+
+  //To roggle audio of remote peer by the host
+  const toggleRemoteVideo = async () => {
+    await hmsActions.setRemoteTrackEnabled(peer.videoTrack, !peer.isVideoEnabled);
+  }
+  //To toggle video by the host
+  const toggleRemoteAudio = async () => {
+    await hmsActions.setRemoteTrackEnabled(peer.audioTrack, !peer.isAudioEnabled);
+  }
+  //to remove remote peer by host
+  const kickParticipant = async () => {
+    await hmsActions.removePeer(peer.id,'Host kicked you out');
+  }
+ 
+
+  /*
+   video Card to render the video
+   @params
+   peer: peer object
+
+  */
   return (
-    <div
-      style={{
-        borderWidth: 10,
-        margin: 30,
-        height: 400,
-        width: 600,
-        backgroundColor: backgroundColor,
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center'
-      }}
-    >
-      <video
-        ref={videoRef}
-        style={{
-          borderRadius: 20,
-          //   margin: 30,
-          borderColor: "#000000",
-          borderWidth: 20,
-        }}
-        autoPlay={true}
-      />
-      {/* <div>{peer.id}</div>
-      <div>{peer.name}</div> */}
+    <div className='videoCard'>
+      <video ref={videoRef} className='videoFrame' autoPlay={true} />
+
+      <div>{isLocal ? "You" : peer.name}</div>
+      {!isLocal && (
+        <div className='videoFooter'>
+        {!isLocal ? (
+          <button onClick={toggleRemoteAudio}>Toggle Audio</button>
+        ) : null}
+        {!isLocal ? (
+          <button onClick={toggleRemoteVideo}>Toggle Video</button>
+        ) : null}
+        {!isLocal ? (
+          <button onClick={kickParticipant}>Kick</button>
+        ) : null}
+      </div>
+      )}
     </div>
   );
 };
