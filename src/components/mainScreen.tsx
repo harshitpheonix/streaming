@@ -5,7 +5,6 @@ import JoinForm from "./join";
 const Main = () => {
   return (
     <div>
-      <h1>Room</h1>
       <Control />
       <JoinForm />
     </div>

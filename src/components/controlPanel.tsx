@@ -9,7 +9,7 @@ const Control = (props: any) => {
     const [isAudioOn, setIsAudioOn] = useState(useHMSStore(selectIsLocalAudioEnabled));
     const [isVideoOn, setIsVideoOn] = useState(useHMSStore(selectIsLocalVideoEnabled));
     const hmsActions = useHMSActions();
-    
+
     // leave the room
     const leaveRoom = () => {
         hmsActions.leave();
@@ -30,7 +30,7 @@ const Control = (props: any) => {
     return (
         <div className="callingControl">
         <div className="rowSpace">
-            <button className='button leaveButton' onClick={leaveRoom}>End Call</button>
+            <button className='button leaveButton' onClick={leaveRoom}>Leave Call</button>
             <button className='button leaveButton' onClick={toggleLocalAudio}>{isAudioOn?'Mute':'Unmute'}</button>
             <button className='button leaveButton' onClick={toggleLocalVideo}>{isVideoOn?'Off Video':'On Video'}</button>
         </div>

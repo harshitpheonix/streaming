@@ -8,7 +8,7 @@ import {
 
 const VideoCard = (props: any) => {
   const peer = props.peer;
-  const isLocal = props.isLocal;
+  const isLocal = peer.isLocal;
   const videoRef = useRef(null);
   const videoTrack = useHMSStore(selectCameraStreamByPeerID(peer.id));
   const hmsActions = useHMSActions();
@@ -50,7 +50,7 @@ const VideoCard = (props: any) => {
     <div className='videoCard'>
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
-      <div>{isLocal ? "You" : peer.name}</div>
+      <div>{isLocal ? "You" :peer.name }</div>
       {!isLocal && (
         <div className='videoFooter'>
         {!isLocal ? (
