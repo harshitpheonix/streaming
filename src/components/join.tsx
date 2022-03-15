@@ -24,7 +24,8 @@ const JoinForm = (props: any) => {
     }));
   };
   
-  console.log(peers);
+  // console.log(peers);
+  //join the room 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const room = hmsActions.join({
@@ -32,11 +33,14 @@ const JoinForm = (props: any) => {
       authToken: inputValues.token,
     });
   };
-
+/**
+ * Joining form
+ */
   return (
     <>
       <form onSubmit={handleSubmit}>
         <h2>Join Room</h2>
+        <p>Auth Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiNjIxMzg5ZWE3YTlkMDRlMjhjNjBhYTdhIiwicm9vbV9pZCI6IjYyMmYwMzQ3ZjA5N2MxNWI5YzdjNDhmYyIsInVzZXJfaWQiOiI2MjEzODllYTdhOWQwNGUyOGM2MGFhNzciLCJyb2xlIjoic3R1ZGVudCIsImp0aSI6ImRlZjc1ZDQ5LTU5NDMtNDlkMS04ZmI4LWQ4NmI2N2FlNGRmMiIsInR5cGUiOiJhcHAiLCJ2ZXJzaW9uIjoyLCJleHAiOjE2NDczMzQ2MDd9.AqeZmQVrLsORjqXrrmam3z8f0NEjRmogg7sUyo21uRw</p>
         <div className='input-container'>
           <input
             required
