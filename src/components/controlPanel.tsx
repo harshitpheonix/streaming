@@ -1,22 +1,20 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useState } from 'react';
 import {
   useHMSActions,
   useHMSStore,
   selectIsLocalAudioEnabled,
   selectIsLocalVideoEnabled,
-  selectPeersScreenSharing,
   
 } from "@100mslive/react-sdk";
 const Control = (props: any) => {
     const [isAudioOn, setIsAudioOn] = useState(useHMSStore(selectIsLocalAudioEnabled));
     const [isVideoOn, setIsVideoOn] = useState(useHMSStore(selectIsLocalVideoEnabled));
     const [isScreenShare, setScreenShare] = useState(false);
-    const [presentingScreen, setPresentingScreen] = useState(useHMSStore(selectPeersScreenSharing));
+    
     const hmsActions = useHMSActions();
-    const presenters = useHMSStore(selectPeersScreenSharing);
-    // const presenters = hmsStore.getState(selectPeersScreenSharing);
+    
+   
     // leave the room
-    console.log('presenters')
     const leaveRoom = () => {
         hmsActions.leave();
     }
