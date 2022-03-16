@@ -28,6 +28,7 @@ const Calling = (props: any) => {
       userName: inputValues.name,
       authToken: inputValues.token,
     });
+    console.log(room);
     setJoin(true);
   };
   /**

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import {
   useHMSActions,
-  HMSStore,
   selectCameraStreamByPeerID,
   useHMSStore,
 } from "@100mslive/react-sdk";
