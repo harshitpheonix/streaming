@@ -33,27 +33,23 @@ const Control = (props: any) => {
     /**
      *  Toggle Screen Share
      */
-    const shareScreen = async () => {
+    const toggleShareScreen = async () => {
         try {
-            await hmsActions.setScreenShareEnabled(true);
-            setScreenShare(true)
+            
+            await hmsActions.setScreenShareEnabled(!isScreenShare);
+            setScreenShare(!isScreenShare)
         } catch (error:any) {
             // an error will be thrown if user didn't give access to share screen
             alert(error.message);
         }
-        
     }
-    useEffect(() => {
-        alert('ss shared')
-
-    },[isScreenShare])
     return (
         <div className="callingControl">
         <div className="rowSpace">
             <button className='button leaveButton' onClick={leaveRoom}>Leave Call</button>
             <button className='button leaveButton' onClick={toggleLocalAudio}>{isAudioOn?'Mute':'Unmute'}</button>
             <button className='button leaveButton' onClick={toggleLocalVideo}>{isVideoOn?'Off Video':'On Video'}</button>
-            <button className='button leaveButton' onClick={shareScreen}>Share Screen</button>
+            <button className='button leaveButton' onClick={toggleShareScreen}> {isScreenShare?'Stop Screen Sharing':'Start Share Screen'}</button>
         </div>
         </div>
     );

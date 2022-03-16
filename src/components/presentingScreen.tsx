@@ -3,6 +3,7 @@ import {
   useHMSActions,
   useHMSStore,
   selectScreenSharesByPeerId,
+  selectPeerByID
 } from "@100mslive/react-sdk";
 /**
  *
@@ -12,7 +13,7 @@ import {
 const PresentingScreen = (props: any) => {
   const peer = props.peer;
   const videoRef = useRef(null);
-
+  const peerObject = useHMSStore(selectPeerByID(peer.id));
   const hmsActions = useHMSActions();
   const presentation = useHMSStore(selectScreenSharesByPeerId(peer.id));
   // to attach incomming video track to video frame
@@ -28,6 +29,9 @@ const PresentingScreen = (props: any) => {
   return (
     <div className='prsentationScreen'>
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
+      <p>
+        {peerObject&&peerObject.name} is presenting 
+      </p>
     </div>
   );
 };

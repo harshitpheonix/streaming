@@ -23,7 +23,6 @@ const Calling = (props: any) => {
     }));
   };
  const presenters = useHMSStore(selectPeersScreenSharing);
- console.log('presenters',presenters)
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
