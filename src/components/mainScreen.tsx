@@ -1,4 +1,5 @@
 import React from "react";
+import Chat from "./chat";
 import Control from "./controlPanel";
 import JoinForm from "./join";
 
@@ -6,7 +7,11 @@ const Main = () => {
   return (
     <div>
       <Control />
-      <JoinForm />
+      <div className="row">
+        <JoinForm />
+        <Chat/>
+      </div>
+      
     </div>
   );
 };

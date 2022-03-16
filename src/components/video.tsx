@@ -27,17 +27,22 @@ const VideoCard = (props: any) => {
 
   //To roggle audio of remote peer by the host
   const toggleRemoteVideo = async () => {
-    await hmsActions.setRemoteTrackEnabled(peer.videoTrack, !peer.isVideoEnabled);
-  }
+    await hmsActions.setRemoteTrackEnabled(
+      peer.videoTrack,
+      !peer.isVideoEnabled
+    );
+  };
   //To toggle video by the host
   const toggleRemoteAudio = async () => {
-    await hmsActions.setRemoteTrackEnabled(peer.audioTrack, !peer.isAudioEnabled);
-  }
+    await hmsActions.setRemoteTrackEnabled(
+      peer.audioTrack,
+      !peer.isAudioEnabled
+    );
+  };
   //to remove remote peer by host
   const kickParticipant = async () => {
-    await hmsActions.removePeer(peer.id,'Host kicked you out');
-  }
- 
+    await hmsActions.removePeer(peer.id, "Host kicked you out");
+  };
 
   /*
    video Card to render the video
@@ -49,19 +54,24 @@ const VideoCard = (props: any) => {
     <div className='videoCard'>
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
-      <div>{isLocal ? "You" :peer.name }</div>
-      {!isLocal && (
-        <div className='videoFooter'>
-        {!isLocal ? (
-          <button onClick={toggleRemoteAudio}>Toggle Audio</button>
-        ) : null}
-        {!isLocal ? (
-          <button onClick={toggleRemoteVideo}>Toggle Video</button>
-        ) : null}
-        {!isLocal ? (
-          <button onClick={kickParticipant}>Kick</button>
-        ) : null}
-      </div>
+      <div>{isLocal ? "You" : peer.name}</div>
+      {peer.roleName == "teacher" && (
+        <>
+          <div>Teacher</div>
+          {!isLocal && (
+            <div className='videoFooter'>
+              {!isLocal ? (
+                <button onClick={toggleRemoteAudio}>Toggle Audio</button>
+              ) : null}
+              {!isLocal ? (
+                <button onClick={toggleRemoteVideo}>Toggle Video</button>
+              ) : null}
+              {!isLocal ? (
+                <button onClick={kickParticipant}>Kick</button>
+              ) : null}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
