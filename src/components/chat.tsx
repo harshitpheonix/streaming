@@ -15,6 +15,7 @@ const Chat = (props: any) => {
   const hmsActions = useHMSActions();
  
   const sendMessageToAll = () => {
+    setChatMessage(()=>chatMessage);
     hmsActions.sendBroadcastMessage("Helllooo");
   };
   return (

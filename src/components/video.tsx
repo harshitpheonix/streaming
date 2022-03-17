@@ -55,7 +55,7 @@ const VideoCard = (props: any) => {
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
       <div>{isLocal ? "You" : peer.name}</div>
-      {peer.roleName == "teacher" && (
+      {peer.roleName === "teacher" && (
         <>
           <div>Teacher</div>
           {!isLocal && (
