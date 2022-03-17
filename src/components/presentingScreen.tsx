@@ -27,11 +27,14 @@ const PresentingScreen = (props: any) => {
     }
   }, [presentation, hmsActions]);
   return (
-    <div className='prsentationScreen'>
-      <video ref={videoRef} className='videoFrame' autoPlay={true} />
-      <p>
+    <div className='videoCardPresentation'>
+      <video ref={videoRef} className='presentationFrame' autoPlay={true} />
+      <div className="videoFooter">
+        <p>
         {peerObject&&peerObject.name} is presenting 
       </p>
+      </div>
+      
     </div>
   );
 };

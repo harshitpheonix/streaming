@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import {
   useHMSActions,
   useHMSStore,
@@ -31,6 +31,12 @@ const Control = (props: any) => {
     /**
      *  Toggle Screen Share
      */
+    useEffect(()=>{
+        hmsActions.setLocalVideoEnabled(false);
+        setIsVideoOn(false);
+        hmsActions.setLocalAudioEnabled(!isAudioOn);
+        setIsAudioOn(false);
+    },[])
     const toggleShareScreen = async () => {
         try {
             

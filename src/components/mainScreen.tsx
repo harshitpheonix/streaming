@@ -1,6 +1,6 @@
 import React from "react";
 import Chat from "./chat";
-import Control from "./controlPanel";
+// import Control from "./controlPanel";
 import JoinForm from "./join";
 
 const Main = () => {

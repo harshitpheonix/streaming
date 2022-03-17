@@ -3,6 +3,7 @@ import {
   useHMSActions,
   selectCameraStreamByPeerID,
   useHMSStore,
+  
 } from "@100mslive/react-sdk";
 
 const VideoCard = (props: any) => {
@@ -55,15 +56,15 @@ const VideoCard = (props: any) => {
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
       <div>{isLocal ? "You" : peer.name}</div>
-      {peer.roleName === "teacher" && (
+      {isLocal&&peer.roleName === "teacher" && (
         <>
           <div>Teacher</div>
-          {!isLocal && (
+          {isLocal && (
             <div className='videoFooter'>
-              {!isLocal ? (
+              {isLocal ? (
                 <button onClick={toggleRemoteAudio}>Toggle Audio</button>
               ) : null}
-              {!isLocal ? (
+              {isLocal ? (
                 <button onClick={toggleRemoteVideo}>Toggle Video</button>
               ) : null}
               {!isLocal ? (
@@ -71,6 +72,11 @@ const VideoCard = (props: any) => {
               ) : null}
             </div>
           )}
+        </>
+      )}
+      {peer.roleName === "student" && (
+        <>
+          <div>Student</div>
         </>
       )}
     </div>
