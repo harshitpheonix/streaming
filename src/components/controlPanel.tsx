@@ -31,11 +31,10 @@ const Control = (props: any) => {
     /**
      *  Toggle Screen Share
      */
-    useEffect(()=>{
-        hmsActions.setLocalVideoEnabled(false);
-        setIsVideoOn(false);
-        hmsActions.setLocalAudioEnabled(!isAudioOn);
-        setIsAudioOn(false);
+    useEffect(() => {
+        hmsActions.setLocalVideoEnabled(true).then(()=>setIsVideoOn(true));
+        hmsActions.setLocalAudioEnabled(true).then(()=>setIsAudioOn(true));
+     
     },[])
     const toggleShareScreen = async () => {
         try {
