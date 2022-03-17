@@ -6,8 +6,8 @@ import JoinForm from "./join";
 const Main = () => {
   return (
     <div>
-      <Control />
-      <div className="row">
+      {/* <Control /> */}
+      <div className="">
         <JoinForm />
         <Chat/>
       </div>

@@ -7,6 +7,7 @@ import {
 } from "@100mslive/react-sdk";
 import VideoCard from "./video";
 import PresentingScreen from "./presentingScreen";
+import Control from "./controlPanel";
 
 const Calling = (props: any) => {
   const hmsActions = useHMSActions();
@@ -69,6 +70,7 @@ const Calling = (props: any) => {
         </form>
       ) : (
         <div>
+          <Control/>
         <h3>Participants</h3>
         <div className="participantsVideoCardContainer">
           {peers.map((peer: any) => (
