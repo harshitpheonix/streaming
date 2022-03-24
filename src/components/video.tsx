@@ -5,7 +5,11 @@ import {
   useHMSStore,
   
 } from "@100mslive/react-sdk";
-
+/**
+ * 
+ * @param props - peer
+ * @returns JSX.Element rendering the video track of the peer
+ */
 const VideoCard = (props: any) => {
   const peer = props.peer;
   const isLocal = peer.isLocal;
@@ -45,26 +49,20 @@ const VideoCard = (props: any) => {
     await hmsActions.removePeer(peer.id, "Host kicked you out");
   };
 
-  /*
-   video Card to render the video
-   @params
-   peer: peer object
-
-  */
   return (
     <div className='videoCard'>
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
       <div>{isLocal ? "You" : peer.name}</div>
-      {isLocal&&peer.roleName === "teacher" && (
+      {peer.roleName === "teacher" && (
         <>
           <div>Teacher</div>
-          {isLocal && (
+          {!isLocal && (
             <div className='videoFooter'>
-              {isLocal ? (
+              {!isLocal ? (
                 <button onClick={toggleRemoteAudio}>Toggle Audio</button>
               ) : null}
-              {isLocal ? (
+              {!isLocal ? (
                 <button onClick={toggleRemoteVideo}>Toggle Video</button>
               ) : null}
               {!isLocal ? (
