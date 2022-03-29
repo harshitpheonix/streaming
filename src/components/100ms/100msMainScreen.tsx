@@ -1,12 +1,13 @@
 import React from "react";
 import Chat from "./chat";
-// import Control from "./controlPanel";
 import JoinForm from "./join";
-
-const Main = () => {
+/**
+ * 
+ * @returns {React.ReactElement} - Main screen for 100ms
+ */
+const HomeScreen_100ms = () => {
   return (
     <div>
-      {/* <Control /> */}
       <div className="">
         <JoinForm />
         <Chat/>
@@ -16,4 +17,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default HomeScreen_100ms;

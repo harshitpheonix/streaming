@@ -47,12 +47,10 @@ const Chat = (props: any) => {
           <h4>{chat.message}</h4>
         </div>
       ))}
-      <form onSubmit={sendMessageToAll}>
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-      </form>
       <button className='button' onClick={sendMessageToAll}>
         Send
       </button>
