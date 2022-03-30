@@ -1,6 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import VideoCalling_100ms from "./100ms";
+import VideoCalling_Dyte from "./dyte";
+import LandingScreen from "./landingScreen";
 
 /**
  *
@@ -8,8 +10,20 @@ import VideoCalling_100ms from "./100ms";
  */
 const Main = () => {
   return (
-   
-        <VideoCalling_100ms />
+    <React.Fragment>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingScreen />} />
+          <Route path='/100ms' element={<VideoCalling_100ms/>} />
+          <Route path='/dyte' element={<VideoCalling_Dyte/>} />
+          
+        <Route
+          path="/dyte/meeting/:room/:meetId"
+          // element={MeetingComponent}
+        />
+        </Routes>
+      </Router>
+    </React.Fragment>
   );
 };
 

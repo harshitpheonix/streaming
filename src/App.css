@@ -69,6 +69,18 @@
   align-items: center;
   margin-top: 20px;
 }
+.joinButton{
+  border-radius: 10px;
+  background-color: #61dafb;
+  color: #fff;
+  font-size:10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 30px;
+}
 .row{
   display: flex;
   flex-direction: row;
@@ -127,6 +139,26 @@
   padding: 20px;
   margin-bottom: 20px;
   scroll-behavior: auto;
+}
+.roomCard{
+  width: 300px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: rgb(39, 47, 156);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.createRoomCard{
+  width: 300px;
+  height: 'auto';
+  border-radius: 10px;
+  background-color: rgb(39, 47, 156);
+  justify-content: space-around;
+  align-items: space-around;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 @keyframes App-logo-spin {
   from {
