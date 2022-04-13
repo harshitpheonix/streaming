@@ -34,6 +34,7 @@ const VideoFrame_Dyte = () => {
           onError={(error) => {
             alert(error);
           }}
+          
         />
       )}
     </>
