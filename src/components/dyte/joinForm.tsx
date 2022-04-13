@@ -10,7 +10,6 @@ const { REACT_APP_DYTE_BACKEND: MY_BACKEND } = process.env;
 
 const JoiningForm = (props: any) => {
   const [name, setName] = useState("");
-  const [authToken, setAuthToken] = useState("");
   const allMeetings = props.allMeetings;
 
   const navigate = useNavigate();
@@ -20,16 +19,16 @@ const JoiningForm = (props: any) => {
     if (name === "name") {
       setName(value);
     }
-    if (name === "authToken") {
-      setAuthToken(value);
-    }
   };
   const meetings = allMeetings.map((meeting: any) => meeting?.data);
   // console.log(meetings.map((meeting: any) => meeting?.meeting));
-
-  const joinRoom = async (meeting: any) => {
+  /**  Allows User to join a meeting
+   *  @param meeting - meeting object to join
+   *  
+   */
+  const joinRoom = async (meeting: any, isHost: boolean = false) => {
     const meetId = meeting?.meeting?.id;
-    const roomName = meeting?.meeting?.title;
+    const roomName = meeting?.meeting?.roomName;
 
     const res = await axios({
       url: `${MY_BACKEND}/participant/create`,
@@ -43,15 +42,20 @@ const JoiningForm = (props: any) => {
         clientSpecificId: Math.random().toString(36).substring(7),
       },
     });
-
-    const authToken = res.data?.data?.authResponse?.authToken;
-     //saving meeting details in session storage
-     sessionStorage.setItem("auth", authToken);
-     sessionStorage.setItem("meetingID", meetId);
-     sessionStorage.setItem("roomName", roomName);
+    console.log(res.data);
+    if(res.data.success){
+      const authToken = res.data?.data?.authResponse?.authToken;
+     //saving meeting details in local storage
+     localStorage.setItem("auth", authToken);
+     localStorage.setItem("meetingID", meetId);
+     localStorage.setItem("roomName", roomName);
 
      //redirect to meeting page
      navigate(`/dyte/meeting/${roomName}/${meetId}`);
+    }
+    else{
+      alert('Something went wrong. Please try again.')
+    }
   };
  
 
@@ -64,18 +68,24 @@ const JoiningForm = (props: any) => {
       </div>
 
       <h3>Rooms Available</h3>
-      {meetings.length ? (
+      <div className="roomContainer">
+        {meetings.length ? (
         meetings.map((meeting: any) => (
           <div className='row roomCard'>
             <span>Hello: {meeting?.meeting?.title}</span>
 
+            <button className='joinButton' onClick={() => joinRoom(meeting, true)}>
+              Join as Host
+            </button>
             <button className='joinButton' onClick={() => joinRoom(meeting)}>
-              Join
+              Join as Participant
             </button>
           </div>
         ))): <span>No Rooms Available. Please create one</span>}
       
     </div>
+      </div>
+      
   );
 };
 

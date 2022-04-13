@@ -72,13 +72,13 @@
 .joinButton{
   border-radius: 10px;
   background-color: #61dafb;
-  color: #fff;
+  color: #000;
   font-size:10px;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
+  width: max-content;
   height: 30px;
 }
 .row{
@@ -159,6 +159,10 @@
   align-items: space-around;
   margin-bottom: 20px;
   padding: 10px;
+}
+.roomContainer{
+  display: flex;
+  flex-direction: column-reverse;
 }
 @keyframes App-logo-spin {
   from {

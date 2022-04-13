@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import JoiningForm from "./joinForm";
 const { REACT_APP_DYTE_BACKEND: MY_BACKEND } = process.env;
 
@@ -21,6 +21,7 @@ const CreateMeet = () => {
 
   /**
    * Memoised version of function to create a new meeting
+   * to be added function signature
    */
   const handleCreateRoomClick = useCallback(() => {
     axios({
@@ -36,12 +37,16 @@ const CreateMeet = () => {
       .then((res) => {
         setAllMeetings([...allMeetings, res.data]);
         console.log(res.data);
-        
       })
       .catch((err) => console.error(err));
-      setName("");
+    setName("");
   }, [name, allMeetings]);
 
+  useEffect(() => {
+    axios.get(`${MY_BACKEND}/meetings`).then((res) => {
+      setAllMeetings(res.data.data.meetings);
+    });
+  }, []);
   return (
     <div>
       <div className='createRoomCard'>
