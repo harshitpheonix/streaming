@@ -54,10 +54,8 @@ const VideoCard = (props: any) => {
       <video ref={videoRef} className='videoFrame' autoPlay={true} />
 
       <div>{isLocal ? "You" : peer.name}</div>
-      {peer.roleName === "teacher" && (
+      {(peer.roleName === "student"&&(!isLocal)) ? (
         <>
-          <div>Teacher</div>
-          {!isLocal && (
             <div className='videoFooter'>
               {!isLocal ? (
                 <button onClick={toggleRemoteAudio}>Toggle Audio</button>
@@ -69,14 +67,13 @@ const VideoCard = (props: any) => {
                 <button onClick={kickParticipant}>Kick</button>
               ) : null}
             </div>
-          )}
         </>
-      )}
-      {peer.roleName === "student" && (
+      ):''}
+      
         <>
-          <div>Student</div>
+          <div>{peer.roleName === "student"?'Student':'Teacher'}</div>
         </>
-      )}
+      
     </div>
   );
 };

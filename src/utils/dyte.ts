@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const { REACT_APP_DYTE_BACKEND: MY_BACKEND } = process.env;
 
-export const joinExistingRoom = async (meetingId: string, roomName: string) => {
+export const joinExistingRoom = async (meetingId: string
+  , roomName: string) => {
   const resp = await axios({
     url: `${MY_BACKEND}/participant/create`,
     method: 'POST',
